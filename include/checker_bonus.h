@@ -6,14 +6,12 @@
 /*   By: kshim <kshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:26:03 by kshim             #+#    #+#             */
-/*   Updated: 2022/07/13 13:41:38 by kshim            ###   ########.fr       */
+/*   Updated: 2022/07/21 15:44:21 by kshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_BONUS_H
 # define CHECKER_BONUS_H
-
-# include <stdlib.h>
 
 typedef enum e_operation
 {
@@ -43,12 +41,6 @@ typedef union u_value_to_sort
 	unsigned int	index;
 }				t_value;
 
-typedef struct s_oper_table
-{
-	unsigned int		key;
-	char				*value;
-}				t_oper_table;
-
 typedef struct s_deque_tower
 {
 	t_d_list	*head;
@@ -70,16 +62,6 @@ typedef struct s_node_value_check
 	int	next_val;
 }				t_node_val;
 
-typedef struct s_ps_sort_data
-{
-	unsigned int	pivot_a;
-	unsigned int	pivot_b;
-	unsigned int	pa;
-	unsigned int	pb;
-	unsigned int	ra;
-	unsigned int	rb;
-}				t_sort_data;
-
 int					ft_ps_check_argv(char **argv,
 						t_ps_struct_list *struct_list, unsigned int *num);
 int					ft_ps_is_valid_char(char *str, int *single);
@@ -88,7 +70,7 @@ int					ft_ps_parse_argv(char *str, t_ps_struct_list *struct_list,
 int					ft_ps_parse_multi_str(char *str,
 						t_ps_struct_list *struct_list, unsigned int *num);		
 int					ft_ps_set_splited_argv(char *str, t_detower *st_a,
-						unsigned int *num);
+						t_detower *index, unsigned int *num);
 
 int					ft_ps_bn_checker(t_ps_struct_list *struct_list,
 						char *operation);
@@ -118,7 +100,7 @@ int					ft_ps_indexing_point(t_d_list *pos, t_node_val *check,
 						t_d_list *node, unsigned int point);
 int					ft_ps_indexing_normal(t_detower *index, t_d_list *pos,
 						t_d_list *node, t_node_val *check);
-void				ft_ps_set_val_to_index(t_detower *list);
+void				ft_ps_set_val_to_index(t_detower *index);
 
 t_detower			*ft_dequetower(void);
 t_d_list			*ft_d_lstnew(void *content);
@@ -146,33 +128,18 @@ int					ft_ps_sort_del_f_add_b(
 int					ft_ps_sort_swap(
 						t_ps_struct_list *struct_list, int flag);
 
-int					ft_ps_sort_list_node_add(
-						t_ps_struct_list *struct_list, int oper_code);
-int					ft_ps_sort_list_node_rotate_check(
-						t_ps_struct_list *struct_list, int *oper_code);
-int					ft_ps_sort_list_node_rev_rotate_check(
-						t_ps_struct_list *struct_list, int *oper_code);
-
 t_ps_struct_list	*ft_ps_set_struct_list(t_detower *stack_a,
 						t_detower *stack_b, t_detower *oper_list);
-t_sort_data			*ft_ps_sorting_data_init(unsigned int pivot_big,
-						unsigned int pivot_small);
-t_d_list			*ft_ps_sort_list_node_init(int flag);
 
 int					ft_atoi_push_swap(const char *str, int *value);
 int					ft_ps_deque_init_value(t_d_list **new_list, int num);
 void				ft_free_split(char **splited);
 void				ft_ps_free_index_list(t_detower **index);
-
 int					ft_ps_is_sorted(t_detower *stack, unsigned int start,
 						unsigned int num, int descend);
+
 unsigned int		ft_ps_value_of_stack_node(t_detower *stack,
 						unsigned int node);
-void				ft_ps_print_oper_list(t_detower *list);
-void				ft_ps_print_oper_table_set(t_oper_table arr[]);
-int					ft_ps_print_operation(unsigned int oper_code,
-						t_oper_table arr[]);
-
 int					ft_is_sign(int c);
 int					ft_isspace(int c);
 

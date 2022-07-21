@@ -6,7 +6,7 @@
 /*   By: kshim <kshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:19:28 by kshim             #+#    #+#             */
-/*   Updated: 2022/07/13 13:38:34 by kshim            ###   ########.fr       */
+/*   Updated: 2022/07/21 16:06:01 by kshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	main(int argc, char **argv)
 	num = 0;
 	struct_list = ft_ps_set_struct_list(
 			ft_dequetower(), ft_dequetower(), ft_dequetower());
-	if (struct_list == NULL || struct_list -> st_a == NULL
-		|| struct_list -> st_b == NULL || struct_list -> list == NULL
+	if (struct_list == 0 || struct_list -> st_a == 0
+		|| struct_list -> st_b == 0 || struct_list -> list == 0
 		|| !(ft_ps_check_argv(argv, struct_list, &num)))
 		exit_error(struct_list);
 	if (ft_ps_is_sorted(struct_list -> st_a, 0, num, 0) == 1)
@@ -61,11 +61,11 @@ int	push_swap(t_ps_struct_list *struct_list, unsigned int num)
 
 void	ft_ps_free_memory(t_ps_struct_list *struct_list)
 {
-	if (struct_list -> st_a != NULL)
+	if (struct_list -> st_a != 0)
 		ft_free_detower(&(struct_list -> st_a));
-	if (struct_list -> st_b != NULL)
+	if (struct_list -> st_b != 0)
 		ft_free_detower(&(struct_list -> st_b));
-	if (struct_list -> list != NULL)
+	if (struct_list -> list != 0)
 		ft_free_detower(&(struct_list -> list));
 	free(struct_list);
 	return ;
@@ -75,5 +75,5 @@ void	exit_error(t_ps_struct_list *struct_list)
 {	
 	ft_ps_free_memory(struct_list);
 	write(2, "Error\n", 6);
-	exit(EXIT_FAILURE);
+	exit(1);
 }

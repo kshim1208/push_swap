@@ -6,19 +6,20 @@
 /*   By: kshim <kshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 10:30:11 by kshim             #+#    #+#             */
-/*   Updated: 2022/07/05 13:39:50 by kshim            ###   ########.fr       */
+/*   Updated: 2022/07/21 15:20:22 by kshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/checker_bonus.h"
+#include <stdlib.h>
 
 void	ft_deque_add_back(t_detower *detower, t_d_list *new_elem)
 {
-	if (new_elem == NULL)
+	if (new_elem == 0)
 		return ;
-	new_elem -> prev = NULL;
-	new_elem -> next = NULL;
-	if (detower -> head == NULL)
+	new_elem -> prev = 0;
+	new_elem -> next = 0;
+	if (detower -> head == 0)
 		detower -> head = new_elem;
 	else
 	{
@@ -26,17 +27,17 @@ void	ft_deque_add_back(t_detower *detower, t_d_list *new_elem)
 		new_elem -> prev = detower -> tail;
 	}
 	detower -> tail = new_elem;
-	detower -> tail -> next = NULL;
+	detower -> tail -> next = 0;
 	return ;
 }
 
 void	ft_deque_add_front(t_detower *detower, t_d_list *new_elem)
 {
-	if (new_elem == NULL)
+	if (new_elem == 0)
 		return ;
-	new_elem -> prev = NULL;
-	new_elem -> next = NULL;
-	if (detower -> head == NULL)
+	new_elem -> prev = 0;
+	new_elem -> next = 0;
+	if (detower -> head == 0)
 	{
 		detower -> head = new_elem;
 		detower -> tail = new_elem;
@@ -47,7 +48,7 @@ void	ft_deque_add_front(t_detower *detower, t_d_list *new_elem)
 		detower -> head -> prev = new_elem;
 		detower -> head = new_elem;
 	}
-	detower -> head -> prev = NULL;
+	detower -> head -> prev = 0;
 	return ;
 }
 
@@ -56,20 +57,20 @@ void	ft_deque_del_back(t_detower *detower, int free_node)
 	t_d_list	*tmp;
 
 	tmp = detower -> tail;
-	if (detower -> tail == NULL)
+	if (detower -> tail == 0)
 		return ;
-	if (detower -> tail -> prev == NULL)
+	if (detower -> tail -> prev == 0)
 	{
-		detower -> head = NULL;
-		detower -> tail = NULL;
+		detower -> head = 0;
+		detower -> tail = 0;
 	}
 	else
 	{
-		detower -> tail -> prev -> next = NULL;
+		detower -> tail -> prev -> next = 0;
 		detower -> tail = detower -> tail -> prev;
 	}
-	tmp -> next = NULL;
-	tmp -> prev = NULL;
+	tmp -> next = 0;
+	tmp -> prev = 0;
 	if (free_node == 1)
 		ft_d_lstdelone(tmp, (&ft_ps_content_del));
 	return ;
@@ -80,20 +81,20 @@ void	ft_deque_del_front(t_detower *detower, int free_node)
 	t_d_list	*tmp;
 
 	tmp = detower -> head;
-	if (detower -> head == NULL)
+	if (detower -> head == 0)
 		return ;
-	if (detower -> head -> next == NULL)
+	if (detower -> head -> next == 0)
 	{
-		detower -> head = NULL;
-		detower -> tail = NULL;
+		detower -> head = 0;
+		detower -> tail = 0;
 	}
 	else
 	{
-		detower -> head -> next -> prev = NULL;
+		detower -> head -> next -> prev = 0;
 		detower -> head = detower -> head -> next;
 	}
-	tmp -> next = NULL;
-	tmp -> prev = NULL;
+	tmp -> next = 0;
+	tmp -> prev = 0;
 	if (free_node == 1)
 		ft_d_lstdelone(tmp, &ft_ps_content_del);
 	return ;
@@ -101,9 +102,9 @@ void	ft_deque_del_front(t_detower *detower, int free_node)
 
 void	ft_d_lstdelone(t_d_list *lst, void (*del)(void *))
 {
-	if (lst -> content != NULL && del != NULL)
+	if (lst -> content != 0 && del != 0)
 		del(lst -> content);
-	if (lst != NULL)
+	if (lst != 0)
 		free(lst);
 	return ;
 }

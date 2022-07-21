@@ -6,14 +6,15 @@
 /*   By: kshim <kshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:46:41 by kshim             #+#    #+#             */
-/*   Updated: 2022/07/13 13:38:38 by kshim            ###   ########.fr       */
+/*   Updated: 2022/07/21 15:20:20 by kshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/checker_bonus.h"
 #include "../libft/ft_printf.h"
 #include "../include/get_next_line_bonus.h"
-#include "unistd.h"
+#include <unistd.h>
+#include <stdlib.h>
 
 static void	ft_ps_bn_parse_operation(t_ps_struct_list *struct_list);
 static void	ft_ps_free_memory(t_ps_struct_list *struct_list);
@@ -31,11 +32,10 @@ int	main(int argc, char **argv)
 	sorted = 0;
 	struct_list = ft_ps_set_struct_list(
 			ft_dequetower(), ft_dequetower(), ft_dequetower());
-	if (struct_list == NULL || struct_list -> st_a == NULL
-		|| struct_list -> st_b == NULL || struct_list -> list == NULL
+	if (struct_list == 0 || struct_list -> st_a == 0
+		|| struct_list -> st_b == 0 || struct_list -> list == 0
 		|| !(ft_ps_check_argv(argv, struct_list, &num)))
 		exit_error(struct_list);
-	ft_free_detower(&(struct_list -> list));
 	ft_ps_bn_parse_operation(struct_list);
 	sorted = ft_ps_is_sorted(struct_list -> st_a, 0, num, 0);
 	ft_ps_free_memory(struct_list);
@@ -52,9 +52,9 @@ void	ft_ps_bn_parse_operation(t_ps_struct_list *struct_list)
 
 	while (1)
 	{
-		operation = NULL;
+		operation = 0;
 		operation = get_next_line(0);
-		if (operation == NULL)
+		if (operation == 0)
 			break ;
 		if (!(ft_ps_bn_checker(struct_list, operation)))
 		{
@@ -68,11 +68,11 @@ void	ft_ps_bn_parse_operation(t_ps_struct_list *struct_list)
 
 void	ft_ps_free_memory(t_ps_struct_list *struct_list)
 {
-	if (struct_list -> st_a != NULL)
+	if (struct_list -> st_a != 0)
 		ft_free_detower(&(struct_list -> st_a));
-	if (struct_list -> st_b != NULL)
+	if (struct_list -> st_b != 0)
 		ft_free_detower(&(struct_list -> st_b));
-	if (struct_list -> list != NULL)
+	if (struct_list -> list != 0)
 		ft_free_detower(&(struct_list -> list));
 	free(struct_list);
 	return ;

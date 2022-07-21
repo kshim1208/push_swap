@@ -6,7 +6,7 @@
 /*   By: kshim <kshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:41:18 by kshim             #+#    #+#             */
-/*   Updated: 2022/07/13 13:39:19 by kshim            ###   ########.fr       */
+/*   Updated: 2022/07/21 14:41:12 by kshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	ft_ps_rec_sort_move_a_to_b(t_ps_struct_list *struct_list,
 	pivot_a = (biggest - (num * 0.3));
 	pivot_b = (biggest - (num * 0.55));
 	sort_data = ft_ps_sorting_data_init(pivot_a, pivot_b);
-	if (sort_data == NULL)
+	if (sort_data == 0)
 		return (0);
 	if (!(ft_ps_sort_a_to_b(struct_list, sort_data, num))
 		|| !(ft_ps_sort_a_to_b_reverse_rotate(struct_list, sort_data))
@@ -110,7 +110,7 @@ int	ft_ps_rec_sort_move_b_to_a(t_ps_struct_list *struct_list,
 	pivot_a = (biggest - (num * 0.3));
 	pivot_b = (biggest - (num * 0.55));
 	sort_data = ft_ps_sorting_data_init(pivot_a, pivot_b);
-	if (sort_data == NULL)
+	if (sort_data == 0)
 		return (0);
 	if (!(ft_ps_sort_b_to_a(struct_list, sort_data, num))
 		|| !(ft_ps_move_a_to_b(struct_list, biggest,

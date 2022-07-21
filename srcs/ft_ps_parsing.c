@@ -6,7 +6,7 @@
 /*   By: kshim <kshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:32:16 by kshim             #+#    #+#             */
-/*   Updated: 2022/07/13 13:39:16 by kshim            ###   ########.fr       */
+/*   Updated: 2022/07/21 15:59:37 by kshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_ps_check_argv(char **argv,
 	int	single;
 
 	i = 1;
-	while (argv[i] != NULL)
+	while (argv[i] != 0)
 	{
 		single = 1;
 		if (!(ft_ps_is_valid_char(argv[i], &single))
@@ -54,9 +54,10 @@ int	ft_ps_is_valid_char(char *str, int *single)
 			if ((ft_is_sign(str[i - 1]) == 1 && ft_isdigit(str[i]) == 0)
 				|| (ft_isdigit(str[i - 1]) == 1 && ft_is_sign(str[i]) == 1))
 				return (0);
+			if (ft_isdigit(str[i - 1]) == 1 && ft_isspace(str[i]) == 1
+				&& ft_isdigit(str[i + 1]) == 1)
+				*single = 0;
 		}
-		if (ft_isspace(str[i]) == 1)
-			*single = 0;
 		i++;
 	}	
 	if ((ft_is_sign(str[i - 1]) == 1 && str[i] == '\0'))
@@ -88,10 +89,10 @@ int	ft_ps_parse_multi_str(char *str, t_ps_struct_list *struct_list,
 	char	**splitted;
 
 	splitted = ft_split(str, ' ');
-	if (splitted == NULL)
+	if (splitted == 0)
 		return (0);
 	i = 0;
-	while (splitted[i] != NULL)
+	while (splitted[i] != 0)
 	{
 		if (!(ft_ps_set_splited_argv(splitted[i], struct_list -> st_a,
 					struct_list -> list, num)))

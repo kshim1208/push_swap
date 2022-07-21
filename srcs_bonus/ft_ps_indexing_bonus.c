@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ps_indexing.c                                   :+:      :+:    :+:   */
+/*   ft_ps_indexing_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kshim <kshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 10:02:22 by kshim             #+#    #+#             */
-/*   Updated: 2022/07/06 12:07:50 by kshim            ###   ########.fr       */
+/*   Updated: 2022/07/21 15:20:25 by kshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/checker_bonus.h"
+#include <stdlib.h>
 
 int	ft_ps_indexing(t_detower *index, t_value *content, unsigned int num)
 {
@@ -19,7 +20,7 @@ int	ft_ps_indexing(t_detower *index, t_value *content, unsigned int num)
 	t_d_list		*node;
 
 	node = ft_d_lstnew(content);
-	if (node == NULL)
+	if (node == 0)
 		return (0);
 	point = num;
 	pos = index -> tail;
@@ -31,7 +32,7 @@ int	ft_ps_indexing(t_detower *index, t_value *content, unsigned int num)
 	else
 	{
 		point = point / 2;
-		ft_ps_indexing_relocate(&pos, point, NULL, 0);
+		ft_ps_indexing_relocate(&pos, point, 0, 0);
 		if (!(ft_ps_indexing_rec(index, &pos, node, point)))
 			return (0);
 	}
@@ -43,13 +44,13 @@ int	ft_ps_indexing_rec(t_detower *index, t_d_list **pos,
 {
 	t_node_val	*check;
 
-	check = NULL;
+	check = 0;
 	if (!(ft_ps_indexing_node_val(*pos, node, &check)))
 		return (0);
 	point = ft_ps_indexing_point(*pos, check, node, point);
 	if (point == 0)
 		return (0);
-	if ((*pos)-> prev == NULL || (*pos)-> next == NULL)
+	if ((*pos)-> prev == 0 || (*pos)-> next == 0)
 	{
 		ft_ps_indexing_side(index, *pos, node, check);
 		return (1);
@@ -71,22 +72,22 @@ int	ft_ps_indexing_rec(t_detower *index, t_d_list **pos,
 int	ft_ps_indexing_node_val(t_d_list *pos, t_d_list *node, t_node_val **check)
 {
 	(*check) = (t_node_val *)malloc(sizeof(t_node_val));
-	if ((*check) == NULL)
+	if ((*check) == 0)
 		return (0);
 	(*check)-> pos_val = ((t_value *)(pos -> content))-> value;
 	(*check)-> node_val = ((t_value *)(node -> content))-> value;
 	(*check)-> prev_val = 0;
 	(*check)-> next_val = 0;
-	if (pos -> prev != NULL)
+	if (pos -> prev != 0)
 		(*check)-> prev_val = ((t_value *)((pos -> prev)-> content))-> value;
-	if (pos -> next != NULL)
+	if (pos -> next != 0)
 		(*check)-> next_val = ((t_value *)((pos -> next)-> content))-> value;
 	return (1);
 }
 
 void	ft_ps_indexing_free_check(t_node_val *check)
 {
-	if (check == NULL)
+	if (check == 0)
 		return ;
 	check -> pos_val = 0;
 	check -> node_val = 0;

@@ -6,11 +6,12 @@
 /*   By: kshim <kshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:01:55 by kshim             #+#    #+#             */
-/*   Updated: 2022/07/08 13:39:23 by kshim            ###   ########.fr       */
+/*   Updated: 2022/07/21 15:20:31 by kshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/checker_bonus.h"
+#include <stdlib.h>
 
 int	ft_atoi_push_swap(const char *str, int *num)
 {
@@ -40,11 +41,11 @@ int	ft_ps_deque_init_value(t_d_list **new_list, int value)
 	t_value	*content;
 
 	content = (t_value *)malloc(sizeof(t_value));
-	if (content == NULL)
+	if (content == 0)
 		return (0);
 	content -> value = value;
 	*new_list = ft_d_lstnew(content);
-	if (*new_list == NULL)
+	if (*new_list == 0)
 		return (0);
 	return (1);
 }
@@ -54,14 +55,14 @@ void	ft_free_split(char **splited)
 	int	i;
 
 	i = 0;
-	while (splited[i] != NULL)
+	while (splited[i] != 0)
 	{
 		free(splited[i]);
-		splited[i] = NULL;
+		splited[i] = 0;
 		i++;
 	}
 	free(splited);
-	splited = NULL;
+	splited = 0;
 	return ;
 }
 
@@ -70,10 +71,10 @@ void	ft_ps_free_index_list(t_detower **index)
 	t_d_list	*lst;
 
 	lst = (*index)-> head;
-	if (lst != NULL)
-		ft_d_lstclear(&lst, NULL);
-	(*index)-> head = NULL;
-	(*index)-> tail = NULL;
+	if (lst != 0)
+		ft_d_lstclear(&lst, 0);
+	(*index)-> head = 0;
+	(*index)-> tail = 0;
 	return ;
 }
 
@@ -85,7 +86,7 @@ int	ft_ps_is_sorted(t_detower *stack,
 
 	tmp = stack -> head;
 	i = 1;
-	while (tmp != NULL && i < num)
+	while (tmp != 0 && i < num)
 	{
 		if ((*(unsigned int *)tmp-> content) != (start))
 			return (0);

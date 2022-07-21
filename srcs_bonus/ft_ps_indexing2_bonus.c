@@ -6,20 +6,20 @@
 /*   By: kshim <kshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 12:32:51 by kshim             #+#    #+#             */
-/*   Updated: 2022/07/08 13:51:39 by kshim            ###   ########.fr       */
+/*   Updated: 2022/07/21 15:20:25 by kshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/checker_bonus.h"
 
 void	ft_ps_indexing_side(t_detower *index, t_d_list *pos,
 		t_d_list *node, t_node_val *check)
 {
-	if (pos -> prev == NULL && pos -> next == NULL)
+	if (pos -> prev == 0 && pos -> next == 0)
 	{
 		ft_ps_indexing_single_node(index, pos, node, check);
 	}
-	else if (pos -> prev == NULL)
+	else if (pos -> prev == 0)
 	{
 		if (check -> node_val < check -> pos_val)
 			ft_deque_add_prev_node(index, pos, node);
@@ -28,7 +28,7 @@ void	ft_ps_indexing_side(t_detower *index, t_d_list *pos,
 		else if (check -> pos_val < check -> node_val)
 			ft_deque_add_next_node(index, pos, node);
 	}
-	else if (pos -> next == NULL)
+	else if (pos -> next == 0)
 	{
 		if (check -> node_val < check -> prev_val)
 			ft_deque_add_prev_node(index, pos -> prev, node);
@@ -79,11 +79,11 @@ int	ft_ps_indexing_point(t_d_list *pos, t_node_val *check,
 	else
 		point = point / 2;
 	if (check -> pos_val == check -> node_val
-		|| ((pos -> prev != NULL) && check -> prev_val == check -> node_val)
-		|| ((pos -> next != NULL) && check -> next_val == check -> node_val))
+		|| ((pos -> prev != 0) && check -> prev_val == check -> node_val)
+		|| ((pos -> next != 0) && check -> next_val == check -> node_val))
 	{
 		ft_ps_indexing_free_check(check);
-		ft_d_lstdelone(node, NULL);
+		ft_d_lstdelone(node, 0);
 		return (0);
 	}
 	return (point);
@@ -96,7 +96,7 @@ void	ft_ps_set_val_to_index(t_detower *index)
 
 	lst = index -> head;
 	i = 0;
-	while (lst != NULL)
+	while (lst != 0)
 	{
 		((t_value *)(lst -> content))-> index = i;
 		lst = lst -> next;

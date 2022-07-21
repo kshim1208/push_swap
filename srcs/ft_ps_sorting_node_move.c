@@ -6,7 +6,7 @@
 /*   By: kshim <kshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:55:56 by kshim             #+#    #+#             */
-/*   Updated: 2022/07/13 13:39:23 by kshim            ###   ########.fr       */
+/*   Updated: 2022/07/21 14:41:01 by kshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	ft_ps_sort_swap(t_ps_struct_list *struct_list, int flag)
 		oper_code = sb;
 	}
 	old_head = stack -> head;
-	if (old_head == NULL || old_head -> next == NULL)
+	if (old_head == 0 || old_head -> next == 0)
 		return (1);
 	old_head_next = old_head -> next;
 	ft_deque_del_front(stack, 0);

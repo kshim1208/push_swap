@@ -6,14 +6,12 @@
 /*   By: kshim <kshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:14:08 by kshim             #+#    #+#             */
-/*   Updated: 2022/07/13 13:41:43 by kshim            ###   ########.fr       */
+/*   Updated: 2022/07/21 16:00:24 by kshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-
-# include <stdlib.h>
 
 typedef enum e_operation
 {
@@ -37,7 +35,7 @@ typedef struct s_d_list
 	struct s_d_list	*next;
 }				t_d_list;
 
-typedef struct s_value
+typedef union u_value_to_sort
 {
 	int				value;
 	unsigned int	index;
@@ -225,7 +223,7 @@ int					ft_ps_is_sorted(t_detower *stack, unsigned int start,
 unsigned int		ft_ps_value_of_stack_node(t_detower *stack,
 						unsigned int node);
 void				ft_ps_print_oper_list(t_detower *list);
-void				ft_ps_print_oper_table_set(char *[]);
+void				ft_ps_print_oper_table_set(char *arr[]);
 int					ft_ps_print_operation(unsigned int oper_code,
 						char *arr[]);
 

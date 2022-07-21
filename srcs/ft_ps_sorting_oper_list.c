@@ -6,7 +6,7 @@
 /*   By: kshim <kshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 13:57:45 by kshim             #+#    #+#             */
-/*   Updated: 2022/07/13 10:39:33 by kshim            ###   ########.fr       */
+/*   Updated: 2022/07/21 14:40:47 by kshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ int	ft_ps_sort_list_node_rotate_check(
 	t_detower	*oper_list;
 
 	oper_list = struct_list -> list;
-	if ((*oper_code == ra && oper_list -> tail != NULL
+	if ((*oper_code == ra && oper_list -> tail != 0
 			&& (*(unsigned int *)(oper_list -> tail)-> content) == rra)
-			|| (*oper_code == rb && oper_list -> tail != NULL
+			|| (*oper_code == rb && oper_list -> tail != 0
 			&& (*(unsigned int *)(oper_list -> tail)-> content) == rrb))
 	{
 		ft_deque_del_back(oper_list, 1);
 		return (0);
 	}
-	if ((*oper_code == ra && oper_list -> tail != NULL
+	if ((*oper_code == ra && oper_list -> tail != 0
 			&& (*(unsigned int *)(oper_list -> tail)-> content) == rb)
-			|| (*oper_code == rb && oper_list -> tail != NULL
+			|| (*oper_code == rb && oper_list -> tail != 0
 			&& (*(unsigned int *)(oper_list -> tail)-> content) == ra))
 	{
 		ft_deque_del_back(oper_list, 1);
@@ -43,17 +43,17 @@ int	ft_ps_sort_list_node_rev_rotate_check(
 	t_detower	*oper_list;
 
 	oper_list = struct_list -> list;
-	if ((*oper_code == rra && oper_list -> tail != NULL
+	if ((*oper_code == rra && oper_list -> tail != 0
 			&& (*(unsigned int *)(oper_list -> tail)-> content) == rrb)
-			|| (*oper_code == rrb && oper_list -> tail != NULL
+			|| (*oper_code == rrb && oper_list -> tail != 0
 			&& (*(unsigned int *)(oper_list -> tail)-> content) == rra))
 	{
 		ft_deque_del_back(oper_list, 1);
 		*oper_code = rrr;
 	}
-	if ((*oper_code == rra && oper_list -> tail != NULL
+	if ((*oper_code == rra && oper_list -> tail != 0
 			&& (*(unsigned int *)(oper_list -> tail)-> content) == ra)
-			|| (*oper_code == rrb && oper_list -> tail != NULL
+			|| (*oper_code == rrb && oper_list -> tail != 0
 			&& (*(unsigned int *)(oper_list -> tail)-> content) == rb))
 	{
 		ft_deque_del_back(oper_list, 1);
@@ -66,7 +66,7 @@ int	ft_ps_sort_list_node_add(t_ps_struct_list *struct_list, int oper_code)
 {
 	t_d_list	*oper_node;
 
-	if (struct_list -> list == NULL)
+	if (struct_list -> list == 0)
 		return (1);
 	if (oper_code == ra || oper_code == rb)
 	{
@@ -79,7 +79,7 @@ int	ft_ps_sort_list_node_add(t_ps_struct_list *struct_list, int oper_code)
 			return (1);
 	}
 	oper_node = ft_ps_sort_list_node_init(oper_code);
-	if (oper_node == NULL)
+	if (oper_node == 0)
 		return (0);
 	ft_deque_add_back(struct_list -> list, oper_node);
 	return (1);

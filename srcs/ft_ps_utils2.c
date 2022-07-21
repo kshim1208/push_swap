@@ -6,7 +6,7 @@
 /*   By: kshim <kshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:01:47 by kshim             #+#    #+#             */
-/*   Updated: 2022/07/13 13:42:50 by kshim            ###   ########.fr       */
+/*   Updated: 2022/07/21 15:42:39 by kshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_ps_print_oper_list(t_detower *list)
 	tmp = list -> head;
 	node = 1;
 	ft_ps_print_oper_table_set(arr);
-	while (tmp != NULL)
+	while (tmp != 0)
 	{
 		ft_ps_print_operation(ft_ps_value_of_stack_node(list, node), arr);
 		tmp = tmp -> next;
@@ -56,16 +56,16 @@ void	ft_ps_print_oper_list(t_detower *list)
 void	ft_ps_print_oper_table_set(char *arr[])
 {
 	arr[sa] = "sa";
-	arr[sb]= "sb";
-	arr[ss]= "ss";
-	arr[pa]= "pa";
-	arr[pb]= "pb";
-	arr[ra]= "ra";
-	arr[rb]= "rb";
-	arr[rr]= "rr";
-	arr[rra]= "rra";
-	arr[rrb]= "rrb";
-	arr[rrr]= "rrr";
+	arr[sb] = "sb";
+	arr[ss] = "ss";
+	arr[pa] = "pa";
+	arr[pb] = "pb";
+	arr[ra] = "ra";
+	arr[rb] = "rb";
+	arr[rr] = "rr";
+	arr[rra] = "rra";
+	arr[rrb] = "rrb";
+	arr[rrr] = "rrr";
 	return ;
 }
 
