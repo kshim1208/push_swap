@@ -6,7 +6,7 @@
 /*   By: kshim <kshim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:32:16 by kshim             #+#    #+#             */
-/*   Updated: 2022/07/21 15:59:37 by kshim            ###   ########.fr       */
+/*   Updated: 2022/07/22 08:43:45 by kshim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_ps_is_valid_char(char *str, int *single)
 				|| (ft_isdigit(str[i - 1]) == 1 && ft_is_sign(str[i]) == 1))
 				return (0);
 			if (ft_isdigit(str[i - 1]) == 1 && ft_isspace(str[i]) == 1
-				&& ft_isdigit(str[i + 1]) == 1)
+				&& (ft_is_sign(str[i + 1]) == 1 || ft_isdigit(str[i + 1]) == 1))
 				*single = 0;
 		}
 		i++;
